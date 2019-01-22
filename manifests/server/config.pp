@@ -15,11 +15,19 @@ class zookeeper::server::config {
 
   $keytab = '/etc/security/keytab/zookeeper.service.keytab'
 
-  if $zookeeper::realm and $zookeeper::realm!= '' {
-    file { $keytab:
-      owner => 'zookeeper',
-      group => 'zookeeper',
-      mode  => '0400',
+  if $zookeeper::realm and $zookeeper::realm != '' {
+    if $zookeeper::keytab_source and $zookeeper::keytab_source != '' {
+      file { $keytab:
+        owner  => 'zookeeper',
+        group  => 'zookeeper',
+        mode   => '0400',
+        source => $zookeeper::keytab_source,
+    } else {
+      file { $keytab:
+        owner => 'zookeeper',
+        group => 'zookeeper',
+        mode  => '0400',
+      }
     }
   }
 

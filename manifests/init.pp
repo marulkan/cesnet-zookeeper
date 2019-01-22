@@ -10,6 +10,7 @@ class zookeeper (
   $keytab = $::zookeeper::params::keytab,
   $principal = undef,
   $realm = '',
+  $keytab_source = undef,
 ) inherits zookeeper::params {
   include ::stdlib
 
