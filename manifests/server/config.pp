@@ -22,6 +22,7 @@ class zookeeper::server::config {
         group  => 'zookeeper',
         mode   => '0400',
         source => $zookeeper::keytab_source,
+      }
     } else {
       file { $keytab:
         owner => 'zookeeper',
